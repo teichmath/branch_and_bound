@@ -1,52 +1,85 @@
 # branch_and_bound
 Solvers for NP-Hard Graph Problems
+
 2018-2023 A.Teich
 
 *** Instructions ***
+
 For these solvers, you need a graph argument, which should be a path to a .txt file with the following format:
 
 n m                 // # of nodes and # of edges
+
 end1 end2 weight    // for edge(0)
+
 ...
+
 end1 end2 weight    // for edge(m-1)
 
+
 For the Traveling Salesman Problem:
+
 example:
+
     from solvers import tsp_solver
+    
     graph_name = "TSP/gr21.txt"
+    
     tsp_solver(graph_name)
 
 For the Max Cut problem:
+
 example:
+
     from solvers import max_cut_solver
+    
     max_cut_solver(graph_name)
 
 For a different branch-and-cut problem (see Discussion, below):
+    
     from bnb_driver import bnb_driver
+    
     from my_own_module import some_function_1, some_function_2, some_function_3, some_function_4, some_function_5, some_function_6 
+    
     search_config = { 
+    
         'problem name': 'Some Graph Problem',
+        
         'graph name': graph_name,
+        
         'optimization type': 'minimize',                #or 'maximize'
+        
         'valid edge set type': 'buncha nice edges',     #whatever you'd call a valid edge set in your problem
+        
         'edge set validator': some_function_1,              #function that checks edge set for validity 
+        
         'greedy heuristic': some_function_2,                #function that gets a quick valid edge set
+        
         'improvement heuristic': some_function_3,           #function that can improve on a given valid edge set
+        
         'initial boundary finder': some_function_4,         #function that provides a cutting plane, even before the first subproblem
+        
         'cutting plane finder': some_function_5,            #function that finds cutting planes during the rounds of branch and cut
+        
         'vertex set description': "Optimal tour vertex sequence: ",     #whatever you'd call a vertex representation of your valid solution
+        
         'vertex set getter': some_function_6                #function that finds a vertex representation from your edge representation of a valid edge set
     }
+
     solution = bnb_driver(graph_name, search_config, verbosity=1)
 
 
 *** Discussion ***
+
 Graph: A double, (V, E); V: a set of vertices, |V|=n; E: a set of weights assigned to pairs of vertices in V, |E|=m.
 
 With our method bnb_driver, we have an implementation of the branch-and-cut strategy (see citation below) that can be adapted to create a solver for the Traveling Salesman Problem, the Max Cut problem, or any other graph problem satisying these criteria:
+
     1.)  The solution is in the form of an edge set. (It can be expressed as an indicator vector in R_m.)
+    
     2.)  There exists a set A of edge sets such that the solution is in the set and is either the maximally or minimally weighted of the set.
+    
     3.)  In polynomial time, we can determine whether a given edge set belongs to A.
+    
     4.)  Our set A excludes many of our graph's possible edge sets, and we can express this in the form of separating hyperplanes.
 
 In the case of the TSP, our set A is all vertex tours, our solution is the minimally weighted vertex tour, and we can find separating hyperplanes by noting that any edge set that is a vertex tour must have a minimum graph cut of 2 (thus, some combination of variables in our solution is >= 2).
