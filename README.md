@@ -1,10 +1,8 @@
 # branch_and_bound
-Solvers for NP-Hard Graph Problems
-
+Solvers for NP-Hard Graph Problems\n
 2018-2023 A.Teich
 
-*** Instructions ***
-
+*** Instructions *** \n
 For these solvers, you need a graph argument, which should be a path to a .txt file with the following format:
 
 n m                 // # of nodes and # of edges
