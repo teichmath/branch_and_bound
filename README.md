@@ -1,5 +1,5 @@
 # branch_and_bound
-## Solvers for NP-Hard Graph Problems  
+### Solvers for NP-Hard Graph Problems  
 2018-2023 A.Teich
 
 ### *** Instructions ***  
@@ -12,16 +12,19 @@ For these solvers, you need a graph argument, which should be a path to a .txt f
    
 For the Traveling Salesman Problem:   
 example:   
+    
     from solvers import tsp_solver
     graph_name = "TSP/gr21.txt"
     tsp_solver(graph_name)
    
 For the Max Cut problem:     
   example:   
+    
     from solvers import max_cut_solver
     max_cut_solver(graph_name)
         
 For a different branch-and-cut problem (see Discussion, below):   
+    
     from bnb_driver import bnb_driver
     from my_own_module import some_function_1, some_function_2, some_function_3, some_function_4, some_function_5, some_function_6 
     search_config = { 
