@@ -1,5 +1,5 @@
 # branch_and_bound
-Solvers for NP-Hard Graph Problems\n
+Solvers for NP-Hard Graph Problems/n
 2018-2023 A.Teich
 
 *** Instructions *** \n
