@@ -10,7 +10,7 @@ For these solvers, you need a graph argument, which should be a path to a .txt f
      ...    
      end1 end2 weight    // for edge(m-1)   
    
-For the Traveling Salesman Problem (example:   
+For the Traveling Salesman Problem (example):   
     
     from solvers import tsp_solver
     graph_name = "TSP/gr21.txt"
@@ -40,7 +40,7 @@ For a different branch-and-cut problem (see Discussion, below):
     }
     solution = bnb_driver(graph_name, search_config, verbosity=1)
 
-###*** Discussion ***   
+### *** Discussion ***   
 Graph: A double, (V, E); V: a set of vertices, |V|=n; E: a set of weights assigned to pairs of vertices in V, |E|=m.   
    
 With our method bnb_driver, we have an implementation of the branch-and-cut strategy (see citation below) that can be adapted to create a solver for the Traveling Salesman Problem, the Max Cut problem, or any other graph problem satisying these criteria:    
